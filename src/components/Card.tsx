@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AppContext } from '../context/AppContext';
 import { DataType } from '../data/data';
 
 interface CardProps {
   item: DataType;
-  onBudgetChange(title: string, price: number): void;
-  onResetExtras(title: string): void;
 }
 
 const INITIAL_EXTRAS = {
@@ -12,21 +11,24 @@ const INITIAL_EXTRAS = {
   languages: 0,
 };
 
-export function Card({ item, onBudgetChange, onResetExtras }: CardProps) {
+export function Card({ item }: CardProps) {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [extras, setExtras] = useState<{ pages: number; languages: number }>(
     INITIAL_EXTRAS
   );
 
+  const { handleBudgetChange, handleResetExtras } =
+    useContext(AppContext) || {};
+
   const resetExtras = () => {
-    onResetExtras(item.title);
+    handleResetExtras?.(item.title);
     setExtras({ pages: 0, languages: 0 });
   };
 
   const handleChangeChecked = () => {
     setIsChecked((curr) => !curr);
     if (!isChecked) {
-      onBudgetChange(item.title, item.price);
+      handleBudgetChange?.(item.title, item.price);
     } else {
       resetExtras();
     }
@@ -36,7 +38,7 @@ export function Card({ item, onBudgetChange, onResetExtras }: CardProps) {
     setExtras((curr) => {
       if (curr[field] >= 3) return curr;
       const newValue = curr[field] + 1;
-      onBudgetChange(field, newValue * 30);
+      handleBudgetChange?.(field, newValue * 30);
       return { ...curr, [field]: newValue };
     });
   };
@@ -45,7 +47,7 @@ export function Card({ item, onBudgetChange, onResetExtras }: CardProps) {
     setExtras((curr) => {
       if (curr[field] <= 0) return curr;
       const newValue = curr[field] - 1;
-      onBudgetChange(field, newValue * 30);
+      handleBudgetChange?.(field, newValue * 30);
       return { ...curr, [field]: newValue };
     });
   };
