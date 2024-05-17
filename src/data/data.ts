@@ -5,23 +5,37 @@ export interface DataType {
   price: number;
 }
 
+export interface WebExtraType {
+  options: {
+    pages: number;
+    languages: number;
+  };
+}
+
 export const DATA: DataType[] = [
   {
     id: 1,
-    title: 'SEO',
-    description: 'This is the descriptions that will be shown',
+    title: "seo",
+    description: "This is the descriptions that will be shown",
     price: 300,
   },
   {
     id: 2,
-    title: 'ADS',
-    description: 'This is the descriptions that will be shown',
+    title: "ads",
+    description: "This is the descriptions that will be shown",
     price: 400,
   },
   {
     id: 3,
-    title: 'WEB',
-    description: 'This is the descriptions that will be shown',
+    title: "web",
+    description: "This is the descriptions that will be shown",
     price: 500,
   },
 ];
+
+export const WEB_EXTRAS: WebExtraType = {
+  options: {
+    pages: 0,
+    languages: 0,
+  },
+};
