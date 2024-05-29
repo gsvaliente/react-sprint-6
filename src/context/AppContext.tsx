@@ -32,7 +32,7 @@ interface AppProviderType {
 export const AppContext = createContext<undefined | AppContextType>(undefined);
 
 export const AppProvider = ({ children }: AppProviderType) => {
-  const [budget, setBudget] = useState(INITIAL_BUDGET);
+  const [budget, setBudget] = useState<BudgetType>(INITIAL_BUDGET);
   const [total, setTotal] = useState<number>(0);
 
   const handleBudgetChange = useCallback((title: string, price: number) => {
