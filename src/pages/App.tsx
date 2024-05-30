@@ -1,7 +1,8 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { CardList } from '../components/CardList';
-import { AppContext } from '../context/AppContext';
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { CardList } from "../components/CardList";
+import { AppContext } from "../context/AppContext";
+import { AddingBudget } from "../components/AddingBudget";
 
 function App() {
   // console.log(budget);
@@ -13,7 +14,8 @@ function App() {
       <CardList />
       <p>The total will be ${total}</p>
 
-      <Link to={'/'}>Home</Link>
+      <Link to={"/"}>Home</Link>
+      <AddingBudget />
     </>
   );
 }
