@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { DataType } from '../data/data';
+import { Modal } from './Modal';
 
 interface CardProps {
   item: DataType;
@@ -94,6 +95,12 @@ export function Card({ item }: CardProps) {
               value={extras.pages}
             />
             <button onClick={() => handleIncreaseExtras('pages')}>+</button>
+            <Modal
+              info='This allows the team to create multiple pages to the desired website, we can create upto 3 new pages'
+              title='Pages Help'
+            >
+              ?
+            </Modal>
           </div>
 
           <div>
@@ -105,6 +112,12 @@ export function Card({ item }: CardProps) {
               value={extras.languages}
             />
             <button onClick={() => handleIncreaseExtras('languages')}>+</button>
+            <Modal
+              info='When the team creates a website, we also are able to add multiple languages. You can select upto 3 new languages'
+              title='Language Help'
+            >
+              ?
+            </Modal>
           </div>
         </>
       )}
