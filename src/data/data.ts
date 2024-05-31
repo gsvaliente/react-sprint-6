@@ -16,8 +16,16 @@ export interface BudgetCardType {
   name: string;
   telephone: string;
   email: string;
-  services: string[];
+  services: BudgetType;
   total: number;
+}
+
+export interface BudgetType {
+  seo: number;
+  ads: number;
+  web: number;
+  pages: number;
+  languages: number;
 }
 
 export const DATA: DataType[] = [
@@ -53,14 +61,26 @@ export const SAMPLE_BUDGETS: BudgetCardType[] = [
     name: 'Gabriel',
     telephone: '123456',
     email: 'g@gmail.com',
-    services: ['seo', 'ads'],
-    total: 500,
+    services: {
+      ads: 400,
+      seo: 300,
+      web: 0,
+      pages: 0,
+      languages: 0,
+    },
+    total: 700,
   },
   {
     name: 'Miguel',
     telephone: '123456',
     email: 'g@gmail.com',
-    services: ['seo', 'ads'],
-    total: 500,
+    services: {
+      ads: 400,
+      seo: 0,
+      web: 0,
+      pages: 0,
+      languages: 0,
+    },
+    total: 400,
   },
 ];

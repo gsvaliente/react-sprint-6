@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { DataType } from '../data/data';
 
@@ -34,11 +34,29 @@ export function Card({ item }: CardProps) {
     }
   };
 
+  // const handleIncreaseExtras = (field: 'pages' | 'languages') => {
+  //   setExtras((curr) => {
+  //     if (curr[field] >= 3) return curr;
+  //     const newValue = curr[field] + 1;
+  //     handleBudgetChange?.(field, newValue * 30);
+  //     return { ...curr, [field]: newValue };
+  //   });
+  // };
+
+  // const handleDecreaseExtras = (field: 'pages' | 'languages') => {
+  //   setExtras((curr) => {
+  //     if (curr[field] <= 0) return curr;
+  //     const newValue = curr[field] - 1;
+  //     handleBudgetChange?.(field, newValue * 30);
+  //     return { ...curr, [field]: newValue };
+  //   });
+  // };
+
+  //THIS WAY DOES NOT MAKE THE COMPONENT NOT UPDATE IN THE RENDER PHASE
   const handleIncreaseExtras = (field: 'pages' | 'languages') => {
     setExtras((curr) => {
       if (curr[field] >= 3) return curr;
       const newValue = curr[field] + 1;
-      handleBudgetChange?.(field, newValue * 30);
       return { ...curr, [field]: newValue };
     });
   };
@@ -47,10 +65,14 @@ export function Card({ item }: CardProps) {
     setExtras((curr) => {
       if (curr[field] <= 0) return curr;
       const newValue = curr[field] - 1;
-      handleBudgetChange?.(field, newValue * 30);
       return { ...curr, [field]: newValue };
     });
   };
+
+  useEffect(() => {
+    handleBudgetChange?.('pages', extras.pages * 30);
+    handleBudgetChange?.('languages', extras.languages * 30);
+  }, [extras, handleBudgetChange]);
 
   return (
     <li>

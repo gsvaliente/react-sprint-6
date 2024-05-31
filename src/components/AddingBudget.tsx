@@ -14,12 +14,14 @@ export function AddingBudget() {
     email: '',
   });
 
-  const { handleAddBudgetList } = useContext(AppContext);
+  const { handleAddBudgetList } = useContext(AppContext) || {};
 
   const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(data);
-    handleAddBudgetList(data.name, data.telephone, data.email);
+    if (handleAddBudgetList) {
+      handleAddBudgetList(data.name, data.telephone, data.email);
+    }
     setData({ name: '', telephone: '', email: '' });
   };
 

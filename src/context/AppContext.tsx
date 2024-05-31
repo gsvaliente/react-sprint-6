@@ -49,9 +49,10 @@ export const AppProvider = ({ children }: AppProviderType) => {
       : setBudget({ ...budget, [title]: 0 });
   }
 
+  // TODO need to reset the checkbox
   function handleAddBudgetList(name: string, telephone: string, email: string) {
     setBudgetList([
-      { name, telephone, email, services: [], total },
+      { name, telephone, email, services: budget, total },
       ...budgetList,
     ]);
     setTotal(0);
