@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AppContext } from '../context/AppContext';
 
 interface UserData {
   name: string;
@@ -13,9 +14,13 @@ export function AddingBudget() {
     email: '',
   });
 
+  const { handleAddBudgetList } = useContext(AppContext);
+
   const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(data);
+    handleAddBudgetList(data.name, data.telephone, data.email);
+    setData({ name: '', telephone: '', email: '' });
   };
 
   return (

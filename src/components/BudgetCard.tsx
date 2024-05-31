@@ -1,10 +1,14 @@
-import { SAMPLE_BUDGETS } from '../data/data';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { BudgetCardType } from '../data/data';
 
 export function BudgetCard() {
+  const { budgetList } = useContext(AppContext);
   return (
     <div>
-      {SAMPLE_BUDGETS.map((el) => (
-        <div>
+      {/* //TODO maybe fix the idx to a uuid or something similar */}
+      {budgetList.map((el: BudgetCardType, idx: number) => (
+        <div key={idx}>
           <div>
             <h3>{el.name}</h3>
             <p>{el.email}</p>
@@ -15,9 +19,10 @@ export function BudgetCard() {
               <span>Contracted Services</span>
             </p>
             {el.services.map((service) => (
-              <li>{service}</li>
+              <li key={service}>{service}</li>
             ))}
           </div>
+          {el.total}
         </div>
       ))}
     </div>

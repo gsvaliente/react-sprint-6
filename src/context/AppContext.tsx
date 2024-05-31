@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { DATA, DataType } from '../data/data';
+import { BudgetCardType, DATA, DataType, SAMPLE_BUDGETS } from '../data/data';
 
 interface BudgetType {
   seo: number;
@@ -15,6 +15,8 @@ interface AppContextType {
   handleBudgetChange: (title: string, price: number) => void;
   handleResetExtras: (title: string) => void;
   DATA: DataType[];
+  budgetList: BudgetCardType[];
+  handleAddBudgetList(name: string, telephone: string, email: string): void;
 }
 
 const INITIAL_BUDGET = {
@@ -34,6 +36,8 @@ export const AppContext = createContext<undefined | AppContextType>(undefined);
 export const AppProvider = ({ children }: AppProviderType) => {
   const [budget, setBudget] = useState<BudgetType>(INITIAL_BUDGET);
   const [total, setTotal] = useState<number>(0);
+  const [budgetList, setBudgetList] =
+    useState<BudgetCardType[]>(SAMPLE_BUDGETS);
 
   const handleBudgetChange = useCallback((title: string, price: number) => {
     setBudget((prevBudget) => ({ ...prevBudget, [title]: price }));
@@ -45,13 +49,31 @@ export const AppProvider = ({ children }: AppProviderType) => {
       : setBudget({ ...budget, [title]: 0 });
   }
 
+  function handleAddBudgetList(name: string, telephone: string, email: string) {
+    setBudgetList([
+      { name, telephone, email, services: [], total },
+      ...budgetList,
+    ]);
+    setTotal(0);
+    setBudget(INITIAL_BUDGET);
+  }
+
   useEffect(() => {
     const values = Object.values(budget).reduce((prev, curr) => prev + curr, 0);
     setTotal(values);
   }, [budget]);
+
   return (
     <AppContext.Provider
-      value={{ budget, total, handleBudgetChange, handleResetExtras, DATA }}
+      value={{
+        budget,
+        budgetList,
+        DATA,
+        handleAddBudgetList,
+        handleBudgetChange,
+        handleResetExtras,
+        total,
+      }}
     >
       {children}
     </AppContext.Provider>

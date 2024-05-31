@@ -5,12 +5,12 @@ export interface DataType {
   price: number;
 }
 
-export interface WebExtraType {
-  options: {
-    pages: number;
-    languages: number;
-  };
-}
+// export interface WebExtraType {
+//   options: {
+//     pages: number;
+//     languages: number;
+//   };
+// }
 
 export interface BudgetCardType {
   name: string;
@@ -41,12 +41,12 @@ export const DATA: DataType[] = [
   },
 ];
 
-export const WEB_EXTRAS: WebExtraType = {
-  options: {
-    pages: 0,
-    languages: 0,
-  },
-};
+// export const WEB_EXTRAS: WebExtraType = {
+//   options: {
+//     pages: 0,
+//     languages: 0,
+//   },
+// };
 
 export const SAMPLE_BUDGETS: BudgetCardType[] = [
   {
