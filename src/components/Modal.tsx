@@ -2,23 +2,24 @@ interface ModalProps {
   title: string;
   info: string;
   children: React.ReactNode;
+  id: number;
 }
 
-export function Modal({ title, info, children }: ModalProps) {
+export function Modal({ title, info, children, id }: ModalProps) {
   return (
     <>
       <button
         className='btn'
         onClick={() =>
           (
-            document.getElementById('my_modal_1') as HTMLDialogElement
+            document.getElementById(`my_modal_${id}`) as HTMLDialogElement
           )?.showModal()
         }
       >
         {children}
       </button>
       <dialog
-        id='my_modal_1'
+        id={`my_modal_${id}`}
         className='modal'
       >
         <div className='modal-box'>
@@ -26,7 +27,6 @@ export function Modal({ title, info, children }: ModalProps) {
           <p className='py-4'>{info}</p>
           <div className='modal-action'>
             <form method='dialog'>
-              {/* if there is a button in form, it will close the modal */}
               <button className='btn'>Close</button>
             </form>
           </div>
