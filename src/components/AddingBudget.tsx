@@ -46,7 +46,7 @@ export function AddingBudget() {
           value={data.email}
           onChange={(e) => setData({ ...data, email: e.target.value })}
         />
-        <button>Request budget</button>
+        <button className='btn'>Request budget</button>
       </form>
     </div>
   );

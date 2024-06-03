@@ -15,7 +15,12 @@ function App() {
       <CardList />
       <p>The total will be ${total}</p>
 
-      <Link to={'/'}>Home</Link>
+      <Link
+        className='btn'
+        to={'/'}
+      >
+        Home
+      </Link>
       <AddingBudget />
       <BudgetCard />
     </>

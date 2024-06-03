@@ -76,51 +76,87 @@ export function Card({ item }: CardProps) {
   }, [extras, handleBudgetChange]);
 
   return (
-    <li>
-      {item.title}, {item.price}
-      <input
-        type='checkbox'
-        readOnly
-        checked={isChecked}
-        onChange={handleChangeChecked}
-      />
-      {isChecked && item.title === 'web' && (
-        <>
-          <div>
-            <label>Pages</label>
-            <button onClick={() => handleDecreaseExtras('pages')}>-</button>
-            <input
-              type='number'
-              readOnly
-              value={extras.pages}
-            />
-            <button onClick={() => handleIncreaseExtras('pages')}>+</button>
-            <Modal
-              info='This allows the team to create multiple pages to the desired website, we can create upto 3 new pages'
-              title='Pages Help'
-            >
-              ?
-            </Modal>
+    <div className='flex flex-col w-full border-opacity-50 mt-2'>
+      <div className='grid h-20 card bg-base-300 rounded-box'>
+        <div className='flex flex-row justify-around'>
+          <div className=''>
+            <h1 className='font-bold'>{item.title}</h1>
+            <p className='text-sm'>{item.description}</p>
           </div>
+          <div className='font-extrabold'>{item.price}</div>
+          <div className='form-control'>
+            <label className='label cursor-pointer'>
+              <input
+                type='checkbox'
+                readOnly
+                checked={isChecked}
+                onChange={handleChangeChecked}
+                className='checkbox checkbox-sm'
+              />
+              <span className='label-text'>Add</span>
+            </label>
+          </div>
+          {isChecked && item.title === 'web' && (
+            <>
+              <div>
+                <label>Pages</label>
+                <button
+                  className='btn btn-circle btn-outline'
+                  onClick={() => handleDecreaseExtras('pages')}
+                >
+                  -
+                </button>
+                <input
+                  type='number'
+                  readOnly
+                  value={extras.pages}
+                />
+                <button
+                  className='btn btn-circle btn-outline'
+                  onClick={() => handleIncreaseExtras('pages')}
+                >
+                  +
+                </button>
+                <Modal
+                  info='This allows the team to create multiple pages to the desired website, we can create upto 3 new pages'
+                  title='Pages Help'
+                  id={1}
+                >
+                  ?
+                </Modal>
+              </div>
 
-          <div>
-            <label>Languages</label>
-            <button onClick={() => handleDecreaseExtras('languages')}>-</button>
-            <input
-              type='number'
-              readOnly
-              value={extras.languages}
-            />
-            <button onClick={() => handleIncreaseExtras('languages')}>+</button>
-            <Modal
-              info='When the team creates a website, we also are able to add multiple languages. You can select upto 3 new languages'
-              title='Language Help'
-            >
-              ?
-            </Modal>
-          </div>
-        </>
-      )}
-    </li>
+              <div>
+                <label>Languages</label>
+                <button
+                  className='btn btn-circle btn-outline'
+                  onClick={() => handleDecreaseExtras('languages')}
+                >
+                  -
+                </button>
+                <input
+                  type='number'
+                  readOnly
+                  value={extras.languages}
+                />
+                <button
+                  className='btn btn-circle btn-outline'
+                  onClick={() => handleIncreaseExtras('languages')}
+                >
+                  +
+                </button>
+                <Modal
+                  info='When the team creates a website, we also are able to add multiple languages. You can select upto 3 new languages'
+                  title='Language Help'
+                  id={2}
+                >
+                  ?
+                </Modal>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

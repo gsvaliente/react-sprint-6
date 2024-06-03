@@ -5,11 +5,11 @@ interface ModalProps {
   id: number;
 }
 
-export function Modal({ title, info, children, id }: ModalProps) {
+export function Modal({ title, info, children, id = 1 }: ModalProps) {
   return (
     <>
       <button
-        className='btn'
+        className='btn btn-square'
         onClick={() =>
           (
             document.getElementById(`my_modal_${id}`) as HTMLDialogElement
