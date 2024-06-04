@@ -1,3 +1,4 @@
+import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { ButtonExtras } from './ui/ButtonExtras';
 import { Modal } from './ui/Modal';
 
@@ -25,9 +26,9 @@ export function ExtraInputs({
             title='Pages Help'
             id={1}
           >
-            ?
+            <IoMdInformationCircleOutline />
           </Modal>
-          <label>Pages</label>
+          <label className='text-sm'>pages</label>
           <ButtonExtras
             func={() => handleDecreaseExtras('pages')}
             text='-'
@@ -36,7 +37,7 @@ export function ExtraInputs({
             type='number'
             readOnly
             value={extras.pages}
-            className='w-10 text-right'
+            className='w-10 text-center'
           />
           <ButtonExtras
             func={() => handleIncreaseExtras('pages')}
@@ -50,9 +51,9 @@ export function ExtraInputs({
             title='Language Help'
             id={2}
           >
-            ?
+            <IoMdInformationCircleOutline />
           </Modal>
-          <label>Langs</label>
+          <label className='text-sm pl-1'>langs</label>
           <ButtonExtras
             text='-'
             func={() => handleDecreaseExtras('languages')}
@@ -61,7 +62,7 @@ export function ExtraInputs({
             type='number'
             readOnly
             value={extras.languages}
-            className='w-10 text-right'
+            className='w-10 text-center'
           />
           <ButtonExtras
             text='+'
