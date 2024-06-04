@@ -9,7 +9,7 @@ export function Modal({ title, info, children, id = 1 }: ModalProps) {
   return (
     <>
       <button
-        className='btn btn-square'
+        className='btn btn-square btn-xs'
         onClick={() =>
           (
             document.getElementById(`my_modal_${id}`) as HTMLDialogElement
