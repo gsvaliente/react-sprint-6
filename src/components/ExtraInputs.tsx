@@ -28,7 +28,7 @@ export function ExtraInputs({
           >
             <IoMdInformationCircleOutline />
           </Modal>
-          <label className='text-sm'>pages</label>
+          <label className='text-sm font-bold uppercase'>pages</label>
           <ButtonExtras
             func={() => handleDecreaseExtras('pages')}
             text='-'
@@ -53,7 +53,7 @@ export function ExtraInputs({
           >
             <IoMdInformationCircleOutline />
           </Modal>
-          <label className='text-sm pl-1'>langs</label>
+          <label className='text-sm font-bold uppercase'>langs</label>
           <ButtonExtras
             text='-'
             func={() => handleDecreaseExtras('languages')}

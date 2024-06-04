@@ -9,10 +9,10 @@ export function Header() {
       <div className='flex-none'>
         <ul className='menu menu-horizontal px-1'>
           <Link
-            className='btn btn-ghost'
+            className='btn btn-ghost font-bold'
             to={'/'}
           >
-            Home
+            HOME
           </Link>
         </ul>
       </div>
