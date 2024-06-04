@@ -8,7 +8,7 @@ export function Total() {
       <div className='stats shadow'>
         <div className='stat'>
           <div className='stat-title'>Total Price</div>
-          <div className='stat-value'>$ {total}</div>
+          <div className='stat-value'>€ {total}</div>
         </div>
       </div>
     </div>

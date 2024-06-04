@@ -63,17 +63,17 @@ export function Card({ item }: CardProps) {
         <div className='card-body flex flex-row justify-between'>
           {/* TITLE & DESCRIPTION */}
           <div>
-            <h2 className='card-title'>{item.title}</h2>
-            <p>{item.description}</p>
+            <h2 className='card-title uppercase'>{item.title}</h2>
+            <p className='text-sm'>{item.description}</p>
           </div>
           {/* PRICE */}
           <div>
-            <h1 className='font-extrabold text-3xl'>{item.price}</h1>
+            <h1 className='font-extrabold text-3xl'>€ {item.price}</h1>
           </div>
           {/* CHECKBOX & FORM */}
           <div>
             <div className='form-control'>
-              <label className='label cursor-pointer'>
+              <label className='label cursor-pointer space-x-2'>
                 <input
                   type='checkbox'
                   readOnly

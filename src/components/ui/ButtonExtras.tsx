@@ -6,7 +6,7 @@ interface ButtonProps {
 export function ButtonExtras({ func, text }: ButtonProps) {
   return (
     <button
-      className={'btn btn-circle btn-outline btn-xs'}
+      className={'btn btn-circle btn-xs'}
       onClick={func}
     >
       {text}

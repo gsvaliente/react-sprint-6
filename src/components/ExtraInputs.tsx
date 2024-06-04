@@ -44,7 +44,7 @@ export function ExtraInputs({
           />
         </div>
         {/* LANGUAGES */}
-        <div className='space-x-2'>
+        <div className='space-x-2 mt-1'>
           <Modal
             info='When the team creates a website, we also are able to add multiple languages. You can select upto 3 new languages'
             title='Language Help'
