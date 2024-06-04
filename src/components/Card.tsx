@@ -58,8 +58,8 @@ export function Card({ item }: CardProps) {
   }, [extras, handleBudgetChange]);
 
   return (
-    <>
-      <div className='card w-10/12 bg-base-100 shadow-xl mb-5'>
+    <div className='flex justify-center'>
+      <div className='card sm:w-full md:w-10/12 bg-base-100 shadow-xl mb-5'>
         <div className='card-body flex flex-row justify-between'>
           {/* TITLE & DESCRIPTION */}
           <div>
@@ -68,7 +68,9 @@ export function Card({ item }: CardProps) {
           </div>
           {/* PRICE */}
           <div>
-            <h1 className='font-extrabold text-3xl'>€ {item.price}</h1>
+            <h1 className='font-extrabold text-xl w-16 md:w-64  md:text-3xl'>
+              € {item.price}
+            </h1>
           </div>
           {/* CHECKBOX & FORM */}
           <div>
@@ -95,6 +97,6 @@ export function Card({ item }: CardProps) {
           />
         )}
       </div>
-    </>
+    </div>
   );
 }

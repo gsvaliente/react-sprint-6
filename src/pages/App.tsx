@@ -5,8 +5,6 @@ import { CardList } from '../components/CardList';
 import { Total } from '../components/Total';
 
 function App() {
-  // console.log(budget);
-
   return (
     <>
       <header>This will be the header</header>
