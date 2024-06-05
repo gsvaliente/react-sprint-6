@@ -6,7 +6,7 @@ export function CardList() {
   const { DATA } = useContext(AppContext) || { DATA: [] };
 
   return (
-    <ul>
+    <ul className='pt-5'>
       {DATA.map((item) => (
         <Card
           key={item.id}

@@ -7,7 +7,7 @@ import { Header } from '../components/ui/Header';
 
 function App() {
   return (
-    <>
+    <div className='bg-stone-100'>
       <Header />
 
       <CardList />
@@ -15,7 +15,7 @@ function App() {
       <Divider />
       <AddingBudget />
       <BudgetCard />
-    </>
+    </div>
   );
 }
 

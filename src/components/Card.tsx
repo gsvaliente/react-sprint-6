@@ -63,7 +63,7 @@ export function Card({ item }: CardProps) {
         <div className='card-body flex flex-row justify-between'>
           {/* TITLE & DESCRIPTION */}
           <div>
-            <h2 className='card-title uppercase'>{item.title}</h2>
+            <h2 className='card-title uppercase text-2xl'>{item.title}</h2>
             <p className='text-sm'>{item.description}</p>
           </div>
           {/* PRICE */}
