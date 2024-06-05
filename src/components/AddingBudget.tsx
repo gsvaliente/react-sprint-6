@@ -1,10 +1,16 @@
 import { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import { ErrorAlert } from './ui/ErrorAlert';
 
 interface UserData {
   name: string;
   telephone: string;
   email: string;
+}
+
+interface ErrorData {
+  error: boolean;
+  message: string;
 }
 
 export function AddingBudget() {
@@ -13,14 +19,25 @@ export function AddingBudget() {
     telephone: '',
     email: '',
   });
+  const [error, setError] = useState<ErrorData>({
+    error: false,
+    message: '',
+  });
 
   const { handleAddBudgetList } = useContext(AppContext) || {};
 
   const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(data);
+    if (!data.name || !data.telephone || !data.email) return;
+
+    if (data.telephone.length !== 9) {
+      setError({ error: true, message: 'Telephone must have 9 digits' });
+      return;
+    }
+
     if (handleAddBudgetList) {
       handleAddBudgetList(data.name, data.telephone, data.email);
+      setError({ error: false, message: '' });
     }
     setData({ name: '', telephone: '', email: '' });
   };
@@ -57,6 +74,7 @@ export function AddingBudget() {
           Submit budget
         </button>
       </div>
+      {error.error && <ErrorAlert message={error.message} />}
     </form>
   );
 }
