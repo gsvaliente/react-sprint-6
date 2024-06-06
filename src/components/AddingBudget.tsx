@@ -24,10 +24,19 @@ export function AddingBudget() {
     message: '',
   });
 
-  const { handleAddBudgetList } = useContext(AppContext) || {};
+  const { handleAddBudgetList, total } = useContext(AppContext) || {};
 
   const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (total === 0) {
+      setError({
+        error: true,
+        message: 'You must select at least one service',
+      });
+      return;
+    }
+
     if (!data.name || !data.telephone || !data.email) return;
 
     if (data.telephone.length !== 9) {
