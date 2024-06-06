@@ -58,6 +58,19 @@ export const DATA: DataType[] = [
 
 export const SAMPLE_BUDGETS: BudgetCardType[] = [
   {
+    name: 'Zeus',
+    telephone: '123456789',
+    email: '1@1',
+    services: {
+      ads: 400,
+      seo: 300,
+      web: 500,
+      pages: 0,
+      languages: 0,
+    },
+    total: 1200,
+  },
+  {
     name: 'Gabriel',
     telephone: '123456',
     email: 'g@gmail.com',

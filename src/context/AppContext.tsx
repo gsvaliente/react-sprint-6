@@ -17,6 +17,7 @@ interface AppContextType {
   DATA: DataType[];
   budgetList: BudgetCardType[];
   handleAddBudgetList(name: string, telephone: string, email: string): void;
+  handleNameFilter: () => void;
 }
 
 const INITIAL_BUDGET = {
@@ -49,6 +50,13 @@ export const AppProvider = ({ children }: AppProviderType) => {
       : setBudget({ ...budget, [title]: 0 });
   }
 
+  function handleNameFilter() {
+    const filteredList = budgetList.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setBudgetList([...filteredList]);
+  }
+
   // TODO need to reset the checkbox
   function handleAddBudgetList(name: string, telephone: string, email: string) {
     setBudgetList([
@@ -74,6 +82,7 @@ export const AppProvider = ({ children }: AppProviderType) => {
         handleBudgetChange,
         handleResetExtras,
         total,
+        handleNameFilter,
       }}
     >
       {children}
