@@ -4,7 +4,7 @@ interface ErrorAlertProps {
 
 export function ErrorAlert({ message }: ErrorAlertProps) {
   return (
-    <div className='toast toast-center toast-middle'>
+    <div className='toast toast-top toast-center'>
       <div className='alert alert-error'>
         <span>{message}</span>
       </div>
