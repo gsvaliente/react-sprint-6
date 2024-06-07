@@ -18,7 +18,8 @@ interface AppContextType {
   budgetList: BudgetCardType[];
   handleAddBudgetList(name: string, telephone: string, email: string): void;
   handleNameFilter: () => void;
-  handleResetFilters(): void;
+  handleResetFilters: () => void;
+  handleDateFilter: () => void;
 }
 
 const INITIAL_BUDGET = {
@@ -54,7 +55,14 @@ export const AppProvider = ({ children }: AppProviderType) => {
   }
 
   function handleAddBudgetList(name: string, telephone: string, email: string) {
-    const newBudget = { name, telephone, email, services: budget, total };
+    const newBudget = {
+      name,
+      telephone,
+      email,
+      services: budget,
+      total,
+      date: Date.now(),
+    };
     const newBudgetList = [newBudget, ...budgetList];
     const newOriginalBudgetList = [newBudget, ...originalBudgetList];
 
@@ -69,6 +77,11 @@ export const AppProvider = ({ children }: AppProviderType) => {
     const filteredList = [...budgetList].sort((a, b) =>
       a.name.localeCompare(b.name)
     );
+    setBudgetList(filteredList);
+  }
+
+  function handleDateFilter() {
+    const filteredList = [...budgetList].sort((a, b) => a.date - b.date);
     setBudgetList(filteredList);
   }
 
@@ -93,6 +106,7 @@ export const AppProvider = ({ children }: AppProviderType) => {
         total,
         handleNameFilter,
         handleResetFilters,
+        handleDateFilter,
       }}
     >
       {children}

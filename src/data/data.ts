@@ -18,6 +18,7 @@ export interface BudgetCardType {
   email: string;
   services: BudgetType;
   total: number;
+  date: number;
 }
 
 export interface BudgetType {
@@ -69,6 +70,7 @@ export const SAMPLE_BUDGETS: BudgetCardType[] = [
       languages: 0,
     },
     total: 1200,
+    date: new Date().getTime() + 40,
   },
   {
     name: 'Gabriel',
@@ -82,6 +84,7 @@ export const SAMPLE_BUDGETS: BudgetCardType[] = [
       languages: 0,
     },
     total: 700,
+    date: new Date().getTime() + 2,
   },
   {
     name: 'Miguel',
@@ -95,5 +98,6 @@ export const SAMPLE_BUDGETS: BudgetCardType[] = [
       languages: 0,
     },
     total: 400,
+    date: new Date().getTime() + 10,
   },
 ];
