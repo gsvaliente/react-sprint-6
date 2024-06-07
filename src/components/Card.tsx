@@ -18,7 +18,7 @@ export function Card({ item }: CardProps) {
     INITIAL_EXTRAS
   );
 
-  const { handleBudgetChange, handleResetExtras } =
+  const { handleBudgetChange, handleResetExtras, isDiscountChecked } =
     useContext(AppContext) || {};
 
   const resetExtras = () => {
@@ -68,6 +68,9 @@ export function Card({ item }: CardProps) {
           </div>
           {/* PRICE */}
           <div>
+            {isDiscountChecked && (
+              <p className='font-bold text-orange-400'> Save 20% </p>
+            )}
             <h1 className='font-extrabold text-xl w-16 md:w-64  md:text-3xl'>
               € {item.price}
             </h1>

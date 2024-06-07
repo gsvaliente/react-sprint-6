@@ -20,6 +20,8 @@ interface AppContextType {
   handleNameFilter: () => void;
   handleResetFilters: () => void;
   handleDateFilter: () => void;
+  handleYearlyDiscountCheck: () => void;
+  isDiscountChecked: boolean;
 }
 
 const INITIAL_BUDGET = {
@@ -43,6 +45,7 @@ export const AppProvider = ({ children }: AppProviderType) => {
     useState<BudgetCardType[]>(SAMPLE_BUDGETS);
   const [originalBudgetList, setOriginalBudgetList] =
     useState<BudgetCardType[]>(SAMPLE_BUDGETS);
+  const [isDiscountChecked, setIsDiscountChecked] = useState<boolean>(false);
 
   const handleBudgetChange = useCallback((title: string, price: number) => {
     setBudget((prevBudget) => ({ ...prevBudget, [title]: price }));
@@ -89,10 +92,25 @@ export const AppProvider = ({ children }: AppProviderType) => {
     setBudgetList([...originalBudgetList]);
   }
 
+  function handleYearlyDiscountCheck() {
+    setIsDiscountChecked((prev) => !prev);
+  }
+
   useEffect(() => {
-    const values = Object.values(budget).reduce((prev, curr) => prev + curr, 0);
-    setTotal(values);
-  }, [budget]);
+    if (!isDiscountChecked) {
+      setTotal(Object.values(budget).reduce((prev, curr) => prev + curr, 0));
+      return;
+    }
+    if (isDiscountChecked) {
+      const values = Object.values(budget).reduce(
+        (prev, curr) => prev + curr,
+        0
+      );
+      const total = values * 0.8;
+      setTotal(total);
+      return;
+    }
+  }, [isDiscountChecked, budget]);
 
   return (
     <AppContext.Provider
@@ -107,6 +125,8 @@ export const AppProvider = ({ children }: AppProviderType) => {
         handleNameFilter,
         handleResetFilters,
         handleDateFilter,
+        handleYearlyDiscountCheck,
+        isDiscountChecked,
       }}
     >
       {children}

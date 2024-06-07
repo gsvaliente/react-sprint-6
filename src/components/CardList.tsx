@@ -3,14 +3,14 @@ import { AppContext } from '../context/AppContext';
 import { Card } from './Card';
 
 export function CardList() {
-  const { DATA } = useContext(AppContext) || { DATA: [] };
+  const { DATA, isDiscountChecked } = useContext(AppContext) || { DATA: [] };
 
   return (
     <ul className='pt-5'>
       {DATA.map((item) => (
         <Card
           key={item.id}
-          item={item}
+          item={isDiscountChecked ? { ...item, price: item.price * 0.8 } : item}
         />
       ))}
     </ul>
