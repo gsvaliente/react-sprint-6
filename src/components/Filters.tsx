@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 export function Filters() {
-  const { handleNameFilter } = useContext(AppContext) || {};
+  const { handleNameFilter, handleResetFilters } = useContext(AppContext) || {};
 
   return (
     <div className='flex text-center align-middle justify-center mt-10'>
@@ -18,10 +18,13 @@ export function Filters() {
           Name
         </button>
         <button className='btn btn-neutral join-item rounded-r-full'>
-          Price
-        </button>
-        <button className='btn btn-neutral join-item rounded-r-full'>
           Date
+        </button>
+        <button
+          className='btn btn-neutral join-item rounded-r-full'
+          onClick={handleResetFilters}
+        >
+          Reset
         </button>
       </div>
     </div>

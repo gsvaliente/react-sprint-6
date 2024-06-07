@@ -18,6 +18,7 @@ interface AppContextType {
   budgetList: BudgetCardType[];
   handleAddBudgetList(name: string, telephone: string, email: string): void;
   handleNameFilter: () => void;
+  handleResetFilters(): void;
 }
 
 const INITIAL_BUDGET = {
@@ -39,6 +40,8 @@ export const AppProvider = ({ children }: AppProviderType) => {
   const [total, setTotal] = useState<number>(0);
   const [budgetList, setBudgetList] =
     useState<BudgetCardType[]>(SAMPLE_BUDGETS);
+  const [originalBudgetList, setOriginalBudgetList] =
+    useState<BudgetCardType[]>(SAMPLE_BUDGETS);
 
   const handleBudgetChange = useCallback((title: string, price: number) => {
     setBudget((prevBudget) => ({ ...prevBudget, [title]: price }));
@@ -50,21 +53,27 @@ export const AppProvider = ({ children }: AppProviderType) => {
       : setBudget({ ...budget, [title]: 0 });
   }
 
-  function handleNameFilter() {
-    const filteredList = budgetList.sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    setBudgetList([...filteredList]);
-  }
-
-  // TODO need to reset the checkbox
   function handleAddBudgetList(name: string, telephone: string, email: string) {
-    setBudgetList([
-      { name, telephone, email, services: budget, total },
-      ...budgetList,
-    ]);
+    const newBudget = { name, telephone, email, services: budget, total };
+    const newBudgetList = [newBudget, ...budgetList];
+    const newOriginalBudgetList = [newBudget, ...originalBudgetList];
+
+    setBudgetList(newBudgetList);
+    setOriginalBudgetList(newOriginalBudgetList);
+
     setTotal(0);
     setBudget(INITIAL_BUDGET);
+  }
+
+  function handleNameFilter() {
+    const filteredList = [...budgetList].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setBudgetList(filteredList);
+  }
+
+  function handleResetFilters() {
+    setBudgetList([...originalBudgetList]);
   }
 
   useEffect(() => {
@@ -83,6 +92,7 @@ export const AppProvider = ({ children }: AppProviderType) => {
         handleResetExtras,
         total,
         handleNameFilter,
+        handleResetFilters,
       }}
     >
       {children}
