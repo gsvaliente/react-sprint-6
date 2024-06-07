@@ -11,7 +11,7 @@ export function Filters() {
 
   return (
     <div className='flex text-center align-middle justify-center mt-10'>
-      <div className='join'>
+      <div className='join join-vertical lg:join-horizontal'>
         <input
           className='input input-bordered join-item'
           placeholder='Search by name'

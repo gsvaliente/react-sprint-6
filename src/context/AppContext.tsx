@@ -90,10 +90,9 @@ export const AppProvider = ({ children }: AppProviderType) => {
       return;
     }
     const filteredList = [...budgetList].filter((budgetName) => {
-      return value === ''
-        ? budgetName
-        : budgetName.name.toLowerCase().includes(value.toLowerCase());
+      return budgetName.name.toLowerCase().includes(value.toLowerCase());
     });
+
     setBudgetList(filteredList);
   }
 
